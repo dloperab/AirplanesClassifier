@@ -1,6 +1,7 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
+using AirplanesClassifier.Views;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace AirplanesClassifier
@@ -11,7 +12,11 @@ namespace AirplanesClassifier
     {
       InitializeComponent();
 
-      MainPage = new MainPage();
+      MainPage = new NavigationPage(new ClassifierView())
+      {
+        BarBackgroundColor = Color.FromHex("#000020"),
+        BarTextColor = Color.White
+      };
     }
 
     protected override void OnStart()
