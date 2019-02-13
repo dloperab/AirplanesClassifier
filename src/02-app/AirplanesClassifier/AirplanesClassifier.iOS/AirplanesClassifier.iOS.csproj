@@ -148,12 +148,12 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="Xamarin.Forms" Version="3.5.0.129452" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\AirplanesClassifier\AirplanesClassifier.csproj">
-      <Project>{C54B9A83-5FC4-4631-8ADC-68B604AE8D5E}</Project>
+      <Project>{AE6830F6-7E94-401D-A42C-F92EE6D5C47A}</Project>
       <Name>AirplanesClassifier</Name>
     </ProjectReference>
   </ItemGroup>
