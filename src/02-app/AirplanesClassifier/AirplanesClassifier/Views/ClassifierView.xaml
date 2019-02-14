@@ -4,31 +4,31 @@
              x:Class="AirplanesClassifier.Views.ClassifierView" 
              xmlns:local="clr-namespace:AirplanesClassifier.ViewModels"
              BackgroundColor="#000020">
-    <ContentPage.BindingContext>
-        <local:ClassifierViewModel />
-    </ContentPage.BindingContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <Label x:Name="lblConnectivityStatus"
+  <ContentPage.BindingContext>
+    <local:ClassifierViewModel />
+  </ContentPage.BindingContext>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="100"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <Label x:Name="lblConnectivityStatus"
                TextColor="Lime"
                FontSize="Large" 
                HorizontalOptions="Center" 
                VerticalOptions="Center" />
 
-        <Label Grid.Row="1" 
+    <Label Grid.Row="1" 
                TextColor="Lime"
                FontSize="Large" 
                HorizontalOptions="Center" 
                VerticalOptions="Center"
                Text="{Binding AirplaneNameMessage}" />
-        
-        <Button Grid.Row="2" 
+
+    <Button Grid.Row="2" 
                 Text="Spotting!" 
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" 
@@ -40,21 +40,21 @@
                 IsEnabled="{Binding CanTakePhoto}"
                 Command="{Binding TakePhotoCommand}"/>
 
-        <Grid BackgroundColor="#000020" 
+    <Grid BackgroundColor="#000020" 
               Opacity="0.9" 
               IsVisible="{Binding ShowSpinner}"
               Grid.RowSpan="4"/>
 
-        <StackLayout Grid.RowSpan="4" 
+    <StackLayout Grid.RowSpan="4" 
                      Orientation="Vertical" 
                      Spacing="20"
                      HorizontalOptions="Center" 
                      VerticalOptions="Center"
                      IsVisible="{Binding ShowSpinner}">
-            <ActivityIndicator Color="Lime" 
+      <ActivityIndicator Color="Lime" 
                                IsRunning="{Binding ShowSpinner}"/>
-            <Label TextColor="Lime" 
+      <Label TextColor="Lime" 
                    Text="Identificando avión..."/>
-        </StackLayout>
-    </Grid>
+    </StackLayout>
+  </Grid>
 </ContentPage>

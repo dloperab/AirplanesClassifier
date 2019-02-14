@@ -23,7 +23,7 @@
 	<key>MinimumOSVersion</key>
 	<string>11.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>AirplanesClassifier</string>
+	<string>Airplanes Classifier</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.soai.AirplanesClassifier</string>
 	<key>CFBundleVersion</key>

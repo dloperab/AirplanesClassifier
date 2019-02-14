@@ -72,6 +72,7 @@ namespace AirplanesClassifier.ViewModels
         if (file != null)
         {
           ImagePrediction bestPrediction = null;
+
           if (NetworkStatusUtil.IsOnline)
             bestPrediction = await _cloudVisionPredictorService.GetBestTagAsync(file);
           else
@@ -83,8 +84,9 @@ namespace AirplanesClassifier.ViewModels
             message = $"Avión: {bestPrediction.Tag} - {bestPrediction.Probability * 100}%";
         }
       }
-      catch
+      catch(System.Exception ex)
       {
+        System.Diagnostics.Debug.WriteLine($"Exception == {ex.Message} /// {ex.StackTrace}");
         message = "Avión desconocido :S";
       }
 
