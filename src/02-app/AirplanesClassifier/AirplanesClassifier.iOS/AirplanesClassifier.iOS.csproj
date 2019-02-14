@@ -175,4 +175,12 @@
       <Name>AirplanesClassifier</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\AirplanesClassifier.mlmodelc\coremldata.bin" />
+    <BundleResource Include="Resources\AirplanesClassifier.mlmodelc\model.espresso.net" />
+    <BundleResource Include="Resources\AirplanesClassifier.mlmodelc\model.espresso.shape" />
+    <BundleResource Include="Resources\AirplanesClassifier.mlmodelc\model.espresso.weights" />
+    <BundleResource Include="Resources\AirplanesClassifier.mlmodelc\model\coremldata.bin" />
+    <BundleResource Include="Resources\AirplanesClassifier.mlmodelc\neural_network_optionals\coremldata.bin" />
+  </ItemGroup>
 </Project>

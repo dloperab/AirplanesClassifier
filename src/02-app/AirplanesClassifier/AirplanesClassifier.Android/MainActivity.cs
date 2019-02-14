@@ -1,11 +1,10 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+
+using Xamarin.Forms;
+
+using Xam.Plugins.OnDeviceCustomVision;
 
 namespace AirplanesClassifier.Droid
 {
@@ -18,9 +17,14 @@ namespace AirplanesClassifier.Droid
       ToolbarResource = Resource.Layout.Toolbar;
 
       base.OnCreate(savedInstanceState);
+
       Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-      global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+      Forms.Init(this, savedInstanceState);
+
       LoadApplication(new App());
+
+      AndroidImageClassifier.Init("model.pb", "labels.txt", ModelType.General);
     }
 
     public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)

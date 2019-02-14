@@ -22,5 +22,9 @@
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Services\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="MainPage.xaml.cs" />
   </ItemGroup>
 </Project>

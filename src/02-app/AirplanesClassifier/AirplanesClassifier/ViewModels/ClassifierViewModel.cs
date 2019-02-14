@@ -8,12 +8,15 @@ using Plugin.Media;
 using Plugin.Media.Abstractions;
 
 using AirplanesClassifier.Services;
+using AirplanesClassifier.Helpers;
+using AirplanesClassifier.Models;
 
 namespace AirplanesClassifier.ViewModels
 {
   public class ClassifierViewModel : ViewModelBase
   {
-    private readonly CustomVisionService _customVisionService;
+    private readonly CloudVisionPredictorService _cloudVisionPredictorService;
+    private readonly LocalVisionPredictorService _localVisionPredictorService;
 
     private string _airplaneNameMessage = string.Empty;
     public string AirplaneNameMessage
@@ -39,7 +42,9 @@ namespace AirplanesClassifier.ViewModels
 
     public ClassifierViewModel()
     {
-      _customVisionService = new CustomVisionService();
+      _cloudVisionPredictorService = new CloudVisionPredictorService();
+      _localVisionPredictorService = new LocalVisionPredictorService();
+
       TakePhotoCommand = new Command(async () => await TakePhotoAsync());
     }
 
@@ -54,28 +59,33 @@ namespace AirplanesClassifier.ViewModels
     {
       var options = new StoreCameraMediaOptions { PhotoSize = PhotoSize.Medium };
       var file = await CrossMedia.Current.TakePhotoAsync(options);
-      AirplaneNameMessage = BuildMessage(file);
+      AirplaneNameMessage = await BuildMessageAsync(file);
       DeletePhoto(file);
     }
 
-    private string BuildMessage(MediaFile file)
+    private async Task<string> BuildMessageAsync(MediaFile file)
     {
-      var message = "Se necesita una foto de un avión";
+      var message = "Necesito una foto de avión";
 
       try
       {
         if (file != null)
         {
-          var mostLikely = _customVisionService.GetBestTag(file);
-          if (mostLikely == null)
-            message = "No conozco ese avión";
+          ImagePrediction bestPrediction = null;
+          if (NetworkStatusUtil.IsOnline)
+            bestPrediction = await _cloudVisionPredictorService.GetBestTagAsync(file);
           else
-            message = $"Avión: {mostLikely.Tag} - {mostLikely.Probability * 100}%";
+            bestPrediction = await _localVisionPredictorService.GetBestTagAsync(file);
+
+          if (bestPrediction == null)
+            message = "Avión desconocido :S";
+          else
+            message = $"Avión: {bestPrediction.Tag} - {bestPrediction.Probability * 100}%";
         }
       }
       catch
       {
-        message = "No conozco ese avión";
+        message = "Avión desconocido :S";
       }
 
       return message;

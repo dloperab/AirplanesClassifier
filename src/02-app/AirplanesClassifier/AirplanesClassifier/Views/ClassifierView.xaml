@@ -9,14 +9,13 @@
     </ContentPage.BindingContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <Label Grid.Row="0" 
-               x:Name="lblConnectivityStatus"
+        <Label x:Name="lblConnectivityStatus"
                TextColor="Lime"
                FontSize="Large" 
                HorizontalOptions="Center" 
@@ -55,7 +54,7 @@
             <ActivityIndicator Color="Lime" 
                                IsRunning="{Binding ShowSpinner}"/>
             <Label TextColor="Lime" 
-                   Text="Identificando..."/>
+                   Text="Identificando avión..."/>
         </StackLayout>
     </Grid>
 </ContentPage>
